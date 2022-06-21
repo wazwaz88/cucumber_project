@@ -9,7 +9,10 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/resources/features",
         glue = "steps",
-        tags = "@temp"
+        tags = "@Wiki",
+        dryRun = false,
+        monochrome = false,
+        plugin = "html:target/cucumber-reports"
 )
 
 

@@ -81,6 +81,10 @@ public class HeroAppSteps {
                 heroAppPage.deleteElementButton.click();
                 Waiter.pause(2);
                 break;
+            case "Login":
+                heroAppPage.loginButton.click();
+                Waiter.pause(2);
+                break;
             default:
                 throw new NotFoundException("The button text is not defined properly in the feature file!!!");
         }
@@ -135,6 +139,17 @@ public class HeroAppSteps {
     public void userShouldSeeAPopupDisplayingMessage(String alertText) {
         Assert.assertEquals(alertText, AlertHandler.getAlertText(driver));
         AlertHandler.dismissAlert(driver);
+    }
+
+    @When("user enters username as {string} and password as {string}")
+    public void user_enters_username_as_and_password_as(String username, String password) {
+        heroAppPage.usernameInputBox.sendKeys(username);
+        heroAppPage.passwordInputBox.sendKeys(password);
+    }
+
+    @Then("user should see a message starts with {string}")
+    public void user_should_see_a_message_starts_with(String errorMessage) {
+        Assert.assertTrue(heroAppPage.loginErrorMessage.getText().startsWith(errorMessage));
     }
 
 
